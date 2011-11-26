@@ -143,8 +143,8 @@ module Glitter
     end
 
     def push
+      object.content_disposition = "attachment;filename=#{app.name}#{File.extname(file.path)}"
       object.content = file
-      object.content_disposition = "attachment; filename=#{app.name}#{File.extname(file.path)}"
       object.save
       self
     end
