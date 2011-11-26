@@ -143,9 +143,10 @@ module Glitter
     end
 
     def push
-      object.content_disposition = "attachment;filename=#{app.name}#{File.extname(file.path)}"
       object.content = file
+      object.content_disposition = "attachment;filename=#{app.name}#{File.extname(file.path)}"
       object.save
+      puts "saved. content-disposition: #{object.content_disposition}"
       self
     end
 
@@ -156,7 +157,7 @@ module Glitter
         a.version = "head"
         a.notes = app.notes
         a.published_at = published_at
-        a.object = object.copy(:key => a.object_name)
+        a.object = object.copy(:key => a.object_name, :content_disposition => "attachment;filename=#{app.name}#{File.extname(file.path)}")
       end
     end
 
