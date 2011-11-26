@@ -184,8 +184,9 @@ module Glitter
       puts "Pushing app #{app.latest.object_name}"
       # Push the latest release with release notes
       puts "Notes are the following"
+      app.latest.notes = options[:release_notes] if options[:release_notes]
       puts app.notes
-      #app.latest.notes = options[:release_notes] if options[:release_notes]
+      puts app.latest.notes
       app.latest.push
       puts "Asset pushed to #{app.latest.url}"
       app.latest.head # Sets this release as the head.
